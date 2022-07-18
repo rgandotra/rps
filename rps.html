@@ -9,94 +9,98 @@
 <body>
   <script>
     function computerPlay() {
-      if (Math.floor(Math.random()*3) == 0) {
+      const randomVal = Math.floor(Math.random() * 3);
+      if (randomVal == 0) {
         return 'ROCK';
       }
-      else if (Math.floor(Math.random()*3) >1) {
+      else if (randomVal > 1) {
         return 'PAPER';
       }
       else return 'SCISSORS';
     }
-    //console.log(`Computer is ${computerPlay()}`);
+    
+    const RESULT_TYPES = {
+      TIE: "TIE",
+      WIN: "WIN",
+      LOSE: "LOSE",
+    };
 
     function playRound(playerSelection, computerSelection) {
-      if (playerSelection.toUpperCase() == "ROCK") {
-        
-        if (computerSelection == "ROCK") {
-          return `"Tie Game"`
-        }        
+      playerSelection = playerSelection.toUpperCase();
+      
+      if (playerSelection === computerSelection) {
+          return RESULT_TYPES.TIE;
+      }
+      
+      if (playerSelection == "ROCK") {
         if (computerSelection == "PAPER") {
-          return `"You Lose!" ${computerSelection} beats ${playerSelection.toUpperCase()}`
+          return RESULT_TYPES.LOSE;
+        } else {
+          return RESULT_TYPES.WIN;
         }
-        if (computerSelection == "SCISSORS") {
-          return `"You Win!" ${playerSelection.toUpperCase()} beats ${computerSelection}`
-        }
-
       }
 
-      if (playerSelection.toUpperCase() == "PAPER") {
-        
+      if (playerSelection == "PAPER") {
         if (computerSelection == "ROCK") {
-          return `"You Win!" ${playerSelection.toUpperCase()} beats ${computerSelection}`
-        }        
-        if (computerSelection == "PAPER") {
-          return `"Tie Game"`
+          return RESULT_TYPES.WIN;
+        } else {
+          return RESULT_TYPES.LOSE;
         }
-        if (computerSelection == "SCISSORS") {
-          return `"You Lose!" ${computerSelection} beats ${playerSelection.toUpperCase()}`
-        }
-
       }
 
-      if (playerSelection.toUpperCase() == "SCISSORS") {
-        
+      if (playerSelection == "SCISSORS") {
         if (computerSelection == "ROCK") {
-          return `"You Lose!" ${computerSelection} beats ${playerSelection.toUpperCase()}`
-        }        
-        if (computerSelection == "PAPER") {
-          return `"You Win!" ${playerSelection.toUpperCase()} beats ${computerSelection}`
-        }
-        if (computerSelection == "SCISSORS") {
-          return `"Tie Game"`
-        }
-
-      }
-
-      }
-
-      function game() { 
-        let playerSelection = "xxx";
-        let computerSelection = "yyy";
-        let playerScore = 0;
-        let computerScore = 0;
-
-        for (let i = 0; i <5; i++) {
-          playerSelection = prompt("Rock, paper or scissors?");
-          computerSelection = computerPlay();
-          console.log(`Computer is ${computerSelection}`);
-          console.log(`User is ${playerSelection.toUpperCase()}`);
-          let result = playRound(playerSelection, computerSelection);
-          console.log(result);
-          if (result.includes("Win")) {
-            playerScore = playerScore+1; 
-          }
-          if (result.includes("Lose")) {
-            computerScore = computerScore+1;
-          }
-          console.log(`The Score is ${playerScore} - ${computerScore}`);
-
-        } 
-
-        if (playerScore > computerScore) {
-          console.log("you are the winner");
-        }
-        else {
-            console.log(`too bad`);
+          return RESULT_TYPES.LOSE;
+        } else {
+          return RESULT_TYPES.WIN;
         }
       }
+    }
+
+    function outcomeDescriptionText(resultType, playerSelection, computerSelection) {      
+      switch(resultType) {
+          case RESULT_TYPES.TIE:
+              return 'Tie Game!'
+          case RESULT_TYPES.WIN:
+              return `You Win! ${playerSelection} beats ${computerSelection}`
+          default:
+              return `You Lose! ${computerSelection} beats ${playerSelection}`
+      }
+    }
+
+    function game() {
+      const NUM_ROUNDS = 5;
+
+      let playerScore = 0;
+      let computerScore = 0;
+
+      for (let i = 0; i < NUM_ROUNDS; i++) {
+        const playerSelection = prompt("Rock, paper or scissors?");
+        const computerSelection = computerPlay();
+        console.log(`Computer is ${computerSelection}`);
+        console.log(`User is ${playerSelection.toUpperCase()}`);
+        
+        const result = playRound(playerSelection, computerSelection);
+        console.log(`${outcomeTextDescription(resultType, playerSelection, computerSelection)}`);
+        
+        if (result === RESULT_TYPES.WIN) {
+          playerScore = playerScore + 1; 
+        } else if (result === RESULT_TYPES.LOSE) {
+          computerScore = computerScore + 1;
+        }
+
+        console.log(`The Score is ${playerScore} - ${computerScore}`);
+      } 
+
+      if (playerScore > computerScore) {
+        console.log("you are the winner");
+      }
+      else {
+          console.log(`too bad`);
+      }
+    }
 
     console.log(game());
-    
   </script>
   
 </body>
