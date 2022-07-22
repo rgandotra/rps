@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Rock Paper Scissors</title>
 </head>
 <body>
   <script>
@@ -76,13 +76,13 @@
       let computerScore = 0;
 
       for (let i = 0; i < NUM_ROUNDS; i++) {
-        const playerSelection = prompt("Rock, paper or scissors?");
+        const playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
         const computerSelection = computerPlay();
         console.log(`Computer is ${computerSelection}`);
-        console.log(`User is ${playerSelection.toUpperCase()}`);
+        console.log(`User is ${playerSelection}`);
         
         const result = playRound(playerSelection, computerSelection);
-        console.log(`${outcomeTextDescription(resultType, playerSelection, computerSelection)}`);
+        console.log(`${outcomeDescriptionText(result, playerSelection, computerSelection)}`);
         
         if (result === RESULT_TYPES.WIN) {
           playerScore = playerScore + 1; 
