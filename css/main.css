@@ -1,5 +1,16 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .selection-button {
-  background-color: lightgrey;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 1.15rem;
+}
+
+#button-container {
 }
 
 #round-outcome-container {
@@ -10,7 +21,33 @@
   background-color: blanchedalmond;
 }
 
+#button-container,
+#round-outcome-container,
+#total-outcome-container {
+  border-radius: 15px;
+  margin: 20px;
+  padding: 20px;
+}
+
+#button-container,
+#selections-container,
+#scores-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.selection-field,
+.score-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#outcome-description,
 #game-over {
-  font-family: "Courier New", Courier, monospace;
   font-size: large;
+  font-weight: 600;
+  margin-top: 35px;
+  text-align: center;
 }
