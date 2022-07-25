@@ -59,59 +59,60 @@ function outcomeDescriptionText(resultType, playerSelection, computerSelection) 
     }
 }
 
-function displaySelections(computerSelection, playerSelection) {
+function displaySelections(playerSelection, computerSelection) {
 
-    document.getElementById("computer-selection").textContent = computerSelection;
     document.getElementById("player-selection").textContent = playerSelection;
+    document.getElementById("computer-selection").textContent = computerSelection;
 }
 
-function game() {
-    const NUM_ROUNDS = 1;
+function game(playerSelection, computerSelection) {
     
-    let playerScore = 0;
-    let computerScore = 0;
+    displaySelections(playerSelection, computerSelection);
     
-    for (let i = 0; i < NUM_ROUNDS; i++) {
-        const playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
-        const computerSelection = computerPlay();
-        
-        displaySelections(computerSelection, playerSelection);
-        
-        const result = playRound(playerSelection, computerSelection);
-        console.log(`${outcomeDescriptionText(result, playerSelection, computerSelection)}`);
-        
-        if (result === RESULT_TYPES.WIN) {
-            playerScore = playerScore + 1; 
-        } else if (result === RESULT_TYPES.LOSE) {
-            computerScore = computerScore + 1;
-        }
-        
-        console.log(`The Score is ${playerScore} - ${computerScore}`);
-    } 
+    const result = playRound(playerSelection, computerSelection);
+    document.getElementById("outcome-description").textContent =
+             outcomeDescriptionText(result, playerSelection, computerSelection);
     
-    if (playerScore > computerScore) {
-        console.log("you are the winner");
+    if (result === RESULT_TYPES.WIN) {
+        playerScore = playerScore + 1; 
+    } else if (result === RESULT_TYPES.LOSE) {
+        computerScore = computerScore + 1;
     }
-    else {
-        console.log(`too bad`);
-    }
-}
+    
+    document.getElementById("player-score").textContent = playerScore;
+    document.getElementById("computer-score").textContent = computerScore;
 
-const playerSelection =""; 
+    //trying to make the page print "game over" once the player wins
+    if (playerScore > MAX_SCORE) {
+        document.getElementById("game-over").removeAttribute("game-over");
+    }
+    
+}
 
 const rockButton = document.querySelector('#rock-selection-button');
+const paperButton = document.querySelector('#paper-selection-button');
+const scissorsButton = document.querySelector('#scissors-selection-button');
+
+let playerSelection ="";
+let computerSelection=""; 
+let playerScore = 0;
+let computerScore = 0;
+const MAX_SCORE = 5;
+
 rockButton.addEventListener('click', () => {
     playerSelection = rockButton.dataset.selection;
+    computerSelection= computerPlay();
+    game(playerSelection, computerSelection);
 });
 
-const paperButton = document.querySelector('#paper-selection-button');
 paperButton.addEventListener('click', () => {
     playerSelection = paperButton.dataset.selection;
+    computerSelection= computerPlay();
+    game(playerSelection, computerSelection);
 });
 
-const scissorsButton = document.querySelector('#scissors-selection-button');
 scissorsButton.addEventListener('click', () => {
     playerSelection = scissorsButton.dataset.selection;
+    computerSelection= computerPlay();
+    game(playerSelection, computerSelection);
 });
-
-//console.log(game());
