@@ -59,8 +59,14 @@ function outcomeDescriptionText(resultType, playerSelection, computerSelection) 
     }
 }
 
+function displaySelections(computerSelection, playerSelection) {
+
+    document.getElementById("computer-selection").textContent = computerSelection;
+    document.getElementById("player-selection").textContent = playerSelection;
+}
+
 function game() {
-    const NUM_ROUNDS = 5;
+    const NUM_ROUNDS = 1;
     
     let playerScore = 0;
     let computerScore = 0;
@@ -68,8 +74,8 @@ function game() {
     for (let i = 0; i < NUM_ROUNDS; i++) {
         const playerSelection = prompt("Rock, paper or scissors?").toUpperCase();
         const computerSelection = computerPlay();
-        console.log(`Computer is ${computerSelection}`);
-        console.log(`User is ${playerSelection}`);
+        
+        displaySelections(computerSelection, playerSelection);
         
         const result = playRound(playerSelection, computerSelection);
         console.log(`${outcomeDescriptionText(result, playerSelection, computerSelection)}`);
@@ -91,4 +97,21 @@ function game() {
     }
 }
 
-console.log(game());
+const playerSelection =""; 
+
+const rockButton = document.querySelector('#rock-selection-button');
+rockButton.addEventListener('click', () => {
+    playerSelection = rockButton.dataset.selection;
+});
+
+const paperButton = document.querySelector('#paper-selection-button');
+paperButton.addEventListener('click', () => {
+    playerSelection = paperButton.dataset.selection;
+});
+
+const scissorsButton = document.querySelector('#scissors-selection-button');
+scissorsButton.addEventListener('click', () => {
+    playerSelection = scissorsButton.dataset.selection;
+});
+
+//console.log(game());
