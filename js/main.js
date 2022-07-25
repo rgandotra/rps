@@ -92,7 +92,7 @@ function gameOver() {
     paperButton.disabled = true;
     scissorsButton.disabled = true;
 
-    if (playerScore >computerScore) {
+    if (playerScore > computerScore) {
         document.getElementById("game-over").textContent = "The Player is the Winner! Reload the page to play again!";
     }
     else {
