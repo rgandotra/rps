@@ -1,39 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock Paper Scissors</title>
-  <link rel="stylesheet" href="./css/main.css">
-  <script src="./js/main.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="button-container">
+        <button
+          data-selection="ROCK"
+          id="rock-selection-button"
+          class="selection-button"
+        >
+          Rock
+        </button>
+        <button
+          data-selection="PAPER"
+          id="paper-selection-button"
+          class="selection-button"
+        >
+          Paper
+        </button>
+        <button
+          data-selection="SCISSORS"
+          id="scissors-selection-button"
+          class="selection-button"
+        >
+          Scissors
+        </button>
+      </div>
 
-</head>
-<body>
+      <div id="round-outcome-container">
+        <label>Player Selection</label>
+        <div id="player-selection">-</div>
+        <label>Computer Selection</label>
+        <div id="computer-selection">-</div>
+        <div id="outcome-description"></div>
+      </div>
 
-  <div id="page-container">
-    <div id="button-container">
-      <button data-selection="ROCK" id="rock-selection-button" class="selection-button">Rock</button>
-      <button data-selection="PAPER" id="paper-selection-button" class="selection-button">Paper</button>
-      <button data-selection="SCISSORS"id="scissors-selection-button" class="selection-button">Scissors</button>
+      <div id="total-outcome-container">
+        <label>Player Score</label>
+        <div id="player-score">-</div>
+        <label>Computer Score</label>
+        <div id="computer-score">-</div>
+        <div id="game-over"></div>
+      </div>
     </div>
-
-    <div id="round-outcome-container">
-      <label>Player Selection</label>
-      <div id="player-selection">-</div>
-      <label>Computer Selection</label>
-      <div id="computer-selection">-</div>
-      <div id="outcome-description"></div>
-    </div>
-
-    <div id="total-outcome-container">
-      <label>Player Score</label>
-      <div id="player-score">-</div>
-      <label>Computer Score</label>
-      <div id="computer-score">-</div>
-      <div id="game-over"></div>
-    </div>
-  </div>
-
-</body>
+  </body>
 </html>

@@ -1,17 +1,16 @@
 .selection-button {
-    background-color:lightgrey;
+  background-color: lightgrey;
 }
 
 #round-outcome-container {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 
 #total-outcome-container {
-    background-color:blanchedalmond;
+  background-color: blanchedalmond;
 }
 
 #game-over {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
 }
