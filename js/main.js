@@ -82,11 +82,22 @@ function game(playerSelection, computerSelection) {
     document.getElementById("player-score").textContent = playerScore;
     document.getElementById("computer-score").textContent = computerScore;
 
-    //trying to make the page print "game over" once the player wins
-    if (playerScore > MAX_SCORE) {
-        document.getElementById("game-over").removeAttribute("game-over");
+    if (playerScore === MAX_SCORE || computerScore === MAX_SCORE) {
+        gameOver();
     }
-    
+}
+
+function gameOver() {
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
+
+    if (playerScore >computerScore) {
+        document.getElementById("game-over").textContent = "The Player is the Winner! Reload the page to play again!";
+    }
+    else {
+        document.getElementById("game-over").textContent = "The Computer is the Winner! Reload the page to play again!";
+    }
 }
 
 const rockButton = document.querySelector('#rock-selection-button');
